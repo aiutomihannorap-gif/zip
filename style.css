@@ -50,7 +50,7 @@ footer {
   font-size: 14px;
   color: #666;
 }
-}
+
 /* Stili per la galleria di 3 immagini affiancate */
 .gallery {
     display: flex; /* Attiva Flexbox */
