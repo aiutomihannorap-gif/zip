@@ -73,6 +73,19 @@ a:hover {
   margin: 0;
 }
 
+/* Immagine stretchata: lunga ma bassa */
+.stretched-image {
+  width: 100%;
+  overflow: hidden;
+}
+
+.stretched-image img {
+  width: 100%;
+  height: 200px; /* Altezza fissa bassa */
+  object-fit: cover;
+  object-position: center;
+}
+
 /* Footer minimal */
 footer {
   padding: 60px 20px;
