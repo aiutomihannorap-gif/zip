@@ -41,6 +41,7 @@ a {
   position: relative;
   color: #111;
   text-decoration: none;
+  transition: opacity 0.3s ease;
   letter-spacing: 0.01em;
   display: inline-block;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -182,12 +183,28 @@ footer {
     align-items: flex-start; /* Allinea gli elementi in alto */
     padding: 20px; /* Aggiunge un po' di spazio intorno */
     gap: 15px; /* Spazio tra gli elementi della galleria */
+    max-width: 100%; /* Assicura che la gallery non sia ristretta */
 }
 
-/* Stili per ogni contenitore di immagine nella galleria */
+/* Stili per ogni contenitore di immagine nella galleria (ora è un link) */
 .gallery-item {
+    position: relative;
     flex: 1; /* Permette a tutti e tre gli elementi di occupare uno spazio uguale */
     min-width: 30%; /* Assicura che ci sia uno spazio minimo */
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    transition: none; /* Resetta le transizioni globali dei link */
+}
+
+/* Disabilita gli effetti globali dei link sulla gallery */
+.gallery-item::after {
+    display: none; /* Nasconde la linea animata globale */
+}
+
+.gallery-item:hover {
+    transform: none; /* Disabilita la trasformazione hover globale */
+    letter-spacing: normal; /* Mantiene il letter-spacing normale */
 }
 
 /* Stili per le immagini stesse all'interno della galleria */
@@ -197,6 +214,33 @@ footer {
     display: block;
     border-radius: 8px; /* Rendi gli angoli leggermente arrotondati (opzionale) */
     object-fit: cover;
+    transition: opacity 0.4s ease;
+}
+
+/* Overlay con testo centrato */
+.gallery-item .label-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Inter', 'Arial', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #111;
+    text-decoration: none;
+    z-index: 10;
+    opacity: 1;
+    pointer-events: none;
+    letter-spacing: 0.02em;
+}
+
+/* Effetto hover fluido */
+.gallery-item:hover img {
+    opacity: 0.3;
+}
+
+.gallery-item:hover .label-overlay {
+    opacity: 1;
 }
 /* Stili per l'immagine a tutta larghezza */
 .full-width-image {
