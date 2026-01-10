@@ -1,10 +1,8 @@
-/* Font elegante */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap');
-
+/* Font moderno e pulito */
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Lora', Georgia, serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #111;
   background: #fff;
   line-height: 1.7;
@@ -20,10 +18,10 @@ body {
 }
 
 h1, h2 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 500;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
   margin-bottom: 20px;
-  letter-spacing: 0.02em;
+  letter-spacing: normal;
   line-height: 1.3;
 }
 
@@ -139,9 +137,10 @@ a:hover::after {
 }
 
 .hero p {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-style: italic;
   font-size: 1.1em;
-  letter-spacing: 0.03em;
+  letter-spacing: normal;
   margin-top: 10px;
 }
 
@@ -168,11 +167,12 @@ a:hover::after {
 
 /* Footer minimal */
 footer {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 60px 20px;
   text-align: center;
   font-size: 13px;
   color: #666;
-  letter-spacing: 0.05em;
+  letter-spacing: normal;
   font-weight: 400;
 }
 
@@ -228,20 +228,21 @@ footer {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Inter', 'Arial', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 28px;
-    font-weight: 700;
-    color: #111;
+    font-weight: 400;
+    color: #000;
     text-decoration: none;
     z-index: 10;
     opacity: 1;
     pointer-events: none;
-    letter-spacing: 0.02em;
+    letter-spacing: normal;
     white-space: nowrap;
     margin: 0;
     padding: 0;
     width: auto;
     height: auto;
+    text-transform: lowercase;
 }
 
 /* Effetto hover fluido */
@@ -295,12 +296,12 @@ footer {
 }
 
 .main-navigation .nav-link {
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Inter', 'Arial', sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 36px;
-  font-weight: 600;
+  font-weight: 400;
   color: #111;
   text-decoration: none;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: block;
   line-height: 1.2;
