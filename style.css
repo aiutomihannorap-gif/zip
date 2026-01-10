@@ -86,3 +86,15 @@ footer {
     height: auto; /* Mantieni le proporzioni */
     display: block;
 }
+
+
+
+/* Stile per il lettore Bandcamp */
+.music-container {
+    max-width: 700px;    /* Impedisce al player di allungarsi troppo */
+    margin: 30px auto;   /* Lo centra e lo stacca dal resto del testo */
+    padding: 15px;       /* Spazio interno */
+    background: white;   /* Sfondo pulito */
+    border-radius: 12px; /* Angoli arrotondati moderni */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Ombra leggerissima */
+}
