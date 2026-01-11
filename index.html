@@ -1,61 +1,107 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.5">
-  <title>LEMBRETE</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEMBRETE</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header class="hero">
-    <h1>Lembrete</h1>
-    <p>em uma tarde de janeiro elas viram a luz</p>
-  </header>
+  <div class="dates-cloud" id="datesCloud"></div>
+    <header class="top-nav">
+        <div class="header-links">
+            <a href="https://lembrete.bandcamp.com/track/primeira" target="_blank">primeira</a>
+            <a href="https://lembrete.bandcamp.com/track/segunda" target="_blank">segunda</a>
+            <a href="https://lembrete.bandcamp.com/track/terceira" target="_blank">terçeira</a>
+        </div>
+        <h1 class="main-title">LEMBRETE</h1>
+        <p class="subtitle">canções</p>
+    </header>
 
-<div class="music-container">
-    <iframe style="border: 0; width: 100%; height: 472px;" 
-        src="https://bandcamp.com/EmbeddedPlayer/album=2176778201/size=large/bgcol=ffffff/linkcol=63b2cc/transparent=true/" 
-        seamless>
-        <a href="https://lembrete.bandcamp.com/album/can-es">canções by Lembrete</a>
-    </iframe>
-</div>
-    </iframe>
-</div>
+    <main>
+        <div class="player-container">
+            <iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=2176778201/size=small/bgcol=333333/linkcol=ffffff/transparent=true/" seamless>
+                <a href="https://lembrete.bandcamp.com/album/can-es">canções by Lembrete</a>
+            </iframe>
+        </div>
 
-  <section class="full-image stretched-image">
-    <img src="images/mucche-bolzano.jpg" alt="immagine">
-  </section>
+        <div class="boxes-grid">
+          <a href="music.html" class="box-item music">
+              <span>music</span>
+          </a>
+          <a href="works.html" class="box-item works">
+              <span>works</span>
+          </a>
+          <a href="live.html" class="box-item live">
+              <span>live</span>
+          </a>
+          <a href="contacts.html" class="box-item contacts">
+              <span>contacts</span>
+          </a>
+      </div>
 
-  <section class="section">
-    <h2>@leeembrete</h2>
-   <ul>
-      <li><a href="eventi.html">eventi</a></li>
-      <li><a href="musica.html">musica</a></li>
-      <li><a href="espositori.html">espositori</a></li>
-    </ul>
-  </section>
-    </section>
+        <div class="dates-cloud">
+            <span style="top:10%; left:20%">12.01.2025</span>
+            <span style="top:30%; left:60%">05.04.2025</span>
+            <span style="top:15%; left:75%">22.02.2025</span>
+            <span style="top:50%; left:10%">18.09.2025</span>
+            <span style="top:40%; left:40%">30.11.2025</span>
+            <span style="top:25%; left:15%">03.03.2025</span>
+            <span style="top:60%; left:80%">15.12.2025</span>
+        </div>
 
-
-  <section class="gallery">
-    <a href="eventi.html" class="gallery-item">
-        <img src="images/dolcetto-foglia.jpg" alt="Live">
-        <span class="label-overlay">LIVE</span>
-    </a>
-    <a href="musica.html" class="gallery-item">
-        <img src="images/fiori-disegnati.jpg" alt="Music">
-        <span class="label-overlay">MUSIC</span>
-    </a>
-    <a href="espositori.html" class="gallery-item">
-        <img src="images/mucca-lingua.jpg" alt="Works">
-        <span class="label-overlay">WORKS</span>
-    </a>
-</section>
-
-  <footer>
-    <p>© 2025 LEMBRETE</p>
-  </footer>
-
+        <section class="bottom-gallery">
+            <a href="music.html" class="gallery-item fluid-link">
+                <img src="images/sfondo_music.jpg" alt="Music">
+                <span class="label">MUSIC</span>
+            </a>
+            <a href="works.html" class="gallery-item fluid-link">
+                <img src="images/sfondo_works.jpg" alt="Works">
+                <span class="label">WORKS</span>
+            </a>
+            <a href="live.html" class="gallery-item fluid-link">
+                <img src="images/sfondo_live.jpg" alt="Live">
+                <span class="label">LIVE</span>
+            </a>
+            <a href="contacts.html" class="gallery-item fluid-link">
+                <img src="images/sfondo_contacts.jpg" alt="Contacts">
+                <span class="label">CONTACTS</span>
+            </a>
+        </section>
+    </main>
+    <script>
+      const datesCloud = document.getElementById('datesCloud');
+      const numDates = 50; // Puoi aumentare o diminuire il numero di date qui
+    
+      function randomDate() {
+        const day = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
+        const month = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
+        return `${day}.${month}.2025`;
+      }
+    
+      function randomPosition() {
+        return {
+          top: Math.random() * 100 + '%',
+          left: Math.random() * 100 + '%',
+          delay: Math.random() * 20 + 's',
+          duration: (Math.random() * 10 + 15) + 's'
+        };
+      }
+    
+      for (let i = 0; i < numDates; i++) {
+        const dateEl = document.createElement('div');
+        dateEl.className = 'date-item';
+        dateEl.textContent = randomDate();
+        
+        const pos = randomPosition();
+        dateEl.style.top = pos.top;
+        dateEl.style.left = pos.left;
+        dateEl.style.animationDelay = pos.delay;
+        dateEl.style.animationDuration = pos.duration;
+        
+        datesCloud.appendChild(dateEl);
+      }
+    </script>
 </body>
 </html>

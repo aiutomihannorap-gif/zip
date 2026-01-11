@@ -1,322 +1,135 @@
-/* Font moderno e pulito */
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #111;
-  background: #fff;
-  line-height: 1.7;
-  letter-spacing: 0.01em;
-}
-
-/* Sezioni larghe e minimal */
-.section {
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: auto;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: white;
   text-align: center;
+  color: black;
 }
 
-h1, h2 {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  margin-bottom: 20px;
-  letter-spacing: normal;
-  line-height: 1.3;
-}
+/* Header */
+.top-nav { padding: 40px 20px; }
+.header-links { display: flex; justify-content: space-between; max-width: 800px; margin: 0 auto 20px; font-family: serif; }
+.header-links a { text-decoration: none; color: black; font-style: italic; }
 
-h1 {
-  font-size: 3em;
-  font-weight: 400;
-}
+.main-title { font-family: serif; font-size: 80px; margin: 0; letter-spacing: 5px; text-transform: uppercase; }
+.subtitle { font-family: serif; font-size: 20px; margin-top: -10px; font-style: italic; }
 
-ul {
-  list-style: none;
-  padding: 0;
-}
+/* Player */
+.player-container { max-width: 700px; margin: 40px auto; padding: 0 20px; }
 
-a {
-  position: relative;
-  color: #111;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-  letter-spacing: 0.01em;
-  display: inline-block;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
-}
+/* Date Sparse */
+.dates-cloud { position: relative; height: 200px; max-width: 900px; margin: 0 auto; overflow: hidden; color: #888; font-size: 14px; }
+.dates-cloud span { position: absolute; }
 
-a::after {
-  content: '';
+/* Gallery */
+.bottom-gallery { display: flex; justify-content: center; gap: 15px; padding: 40px; }
+.gallery-item { position: relative; width: 200px; height: 150px; overflow: hidden; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s ease; }
+.gallery-item .label { position: absolute; z-index: 2; color: black; font-weight: bold; font-size: 20px; transition: color 0.4s; }
+
+/* Effetto Liquido Hover */
+.fluid-link::before {
+  content: "";
   position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0;
-  height: 1px;
-  background-color: #111;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(-50%);
-}
-
-a:hover {
-  color: #333;
-  letter-spacing: 0.05em;
-  transform: translateY(-2px) scale(1.02);
-}
-
-a:hover::after {
-  width: 100%;
-  height: 1.5px;
-  opacity: 0.6;
-}
-
-/* Effetto hover fluido per link con classe .fluid-link */
-.fluid-link {
-  position: relative;
-  display: inline-block;
-  padding: 8px 16px;
-  color: #111;
-  text-decoration: none;
-  overflow: hidden;
-  transition: color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
 }
 
-.fluid-link::before {
-  content: '';
+.fluid-link:hover::before { left: 0; }
+.fluid-link:hover img { opacity: 0.3; }
+.fluid-link:hover .label { color: white; }
+
+
+/* Il contenitore deve coprire l'area ma stare dietro a tutto */
+.dates-cloud {
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #111;
-  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  z-index: -1;
-  transform-origin: left center;
-}
-
-.fluid-link:hover {
-  color: #ffffff;
-}
-
-.fluid-link:hover::before {
   width: 100%;
-}
-
-/* Hero iniziale */
-.hero {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  height: 100%;
+  pointer-events: none; /* Così puoi cliccare i tasti sotto le date */
+  z-index: 1;
   overflow: hidden;
 }
 
-.hero::before {
-  content: '';
+/* Stile delle singole date */
+.date-item {
   position: absolute;
-  top: 0;
-  left: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.15); /* Colore molto leggero */
+  white-space: nowrap;
+  animation: float 20s infinite ease-in-out;
+}
+
+/* L'effetto di movimento */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+/* Configurazione della griglia per affiancare i 4 box */
+.boxes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Crea 4 colonne uguali */
   width: 100%;
-  height: 100%;
-  background-image: url('images/texture-home.jpg');
+  margin-top: 60px;
+}
+
+/* Stile base del singolo box-link */
+.box-item {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.3;
-  z-index: 0;
 }
 
-.hero h1,
-.hero p {
+/* Assegnazione delle immagini di sfondo caricate nella cartella images */
+.box-item.music { background-image: url('images/sfondo_music.jpg'); }
+.box-item.works { background-image: url('images/sfondo_works.jpg'); }
+.box-item.live { background-image: url('images/sfondo_live.jpg'); }
+.box-item.contacts { background-image: url('images/sfondo_contacts.jpg'); }
+
+/* Creazione dell'effetto overlay "liquido" (lo sfondo che scorre) */
+.box-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%; /* Inizia fuori dallo schermo a sinistra */
+  width: 100%;
+  height: 100%;
+  transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Movimento fluido */
+  z-index: 2;
+}
+
+/* Colori dell'overlay al passaggio del mouse per ogni sezione */
+.box-item.music::after { background: rgba(52, 152, 219, 0.9); }
+.box-item.works::after { background: rgba(231, 76, 60, 0.9); }
+.box-item.live::after { background: rgba(243, 156, 18, 0.9); }
+.box-item.contacts::after { background: rgba(39, 174, 96, 0.9); }
+
+/* Attivazione dell'effetto: lo sfondo scorre verso destra al passaggio del mouse */
+.box-item:hover::after {
+  left: 0;
+}
+
+/* Stile del testo (etichetta) sopra l'immagine */
+.box-item span {
   position: relative;
-  z-index: 1;
-}
-
-.hero p {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-style: italic;
-  font-size: 1.1em;
-  letter-spacing: normal;
-  margin-top: 10px;
-}
-
-/* Immagini larghe tipo Soul Net */
-.full-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0;
-}
-
-/* Immagine stretchata: lunga ma bassa */
-.stretched-image {
-  width: 100%;
-  overflow: hidden;
-}
-
-.stretched-image img {
-  width: 100%;
-  height: 200px; /* Altezza fissa bassa */
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Footer minimal */
-footer {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  padding: 60px 20px;
-  text-align: center;
-  font-size: 13px;
-  color: #666;
-  letter-spacing: normal;
-  font-weight: 400;
-}
-
-/* Stili per la galleria di 3 immagini affiancate */
-.gallery {
-    display: flex; /* Attiva Flexbox */
-    justify-content: space-between; /* Distribuisce lo spazio tra le immagini */
-    align-items: flex-start; /* Allinea gli elementi in alto */
-    padding: 20px; /* Aggiunge un po' di spazio intorno */
-    gap: 15px; /* Spazio tra gli elementi della galleria */
-    max-width: 100%; /* Assicura che la gallery non sia ristretta */
-}
-
-/* Stili per ogni contenitore di immagine nella galleria (ora è un link) */
-.gallery-item {
-    position: relative;
-    flex: 1; /* Permette a tutti e tre gli elementi di occupare uno spazio uguale */
-    min-width: 30%; /* Assicura che ci sia uno spazio minimo */
-    display: block;
-    text-decoration: none;
-    overflow: hidden;
-    transition: none; /* Resetta le transizioni globali dei link */
-    margin: 0;
-    padding: 0;
-    aspect-ratio: 4 / 3; /* Mantiene un rapporto d'aspetto per l'altezza */
-}
-
-/* Disabilita gli effetti globali dei link sulla gallery */
-.gallery-item::after {
-    display: none; /* Nasconde la linea animata globale */
-}
-
-.gallery-item:hover {
-    transform: none; /* Disabilita la trasformazione hover globale */
-    letter-spacing: normal; /* Mantiene il letter-spacing normale */
-}
-
-/* Stili per le immagini stesse all'interno della galleria */
-.gallery-item img {
-    width: 100%; /* L'immagine occupa il 100% del suo contenitore (.gallery-item) */
-    height: 100%;
-    display: block;
-    border-radius: 8px; /* Rendi gli angoli leggermente arrotondati (opzionale) */
-    object-fit: cover;
-    transition: opacity 0.4s ease;
-    margin: 0;
-    padding: 0;
-}
-
-/* Overlay con testo centrato perfettamente al centro dell'immagine */
-.gallery-item .label-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 28px;
-    font-weight: 400;
-    color: #000;
-    text-decoration: none;
-    z-index: 10;
-    opacity: 1;
-    pointer-events: none;
-    letter-spacing: normal;
-    white-space: nowrap;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    height: auto;
-    text-transform: lowercase;
-}
-
-/* Effetto hover fluido */
-.gallery-item:hover img {
-    opacity: 0.3;
-}
-
-.gallery-item:hover .label-overlay {
-    opacity: 1;
-}
-/* Stili per l'immagine a tutta larghezza */
-.full-width-image {
-    width: 100%; /* Assicura che il contenitore occupi tutta la larghezza */
-    overflow: hidden; /* Nasconde eventuali margini o overflow */
-    margin-top: 30px; /* Spazio sopra la sezione */
-}
-
-.full-width-image img {
-    width: 100%; /* L'immagine occupa il 100% della larghezza del suo contenitore */
-    height: auto; /* Mantieni le proporzioni */
-    display: block;
-}
-
-
-
-
-/* Main Layout - Flexbox per menu e player */
-.main-layout {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 60px;
-  padding: 60px 40px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* Navigazione principale */
-.main-navigation {
-  flex: 0 0 auto;
-}
-
-.main-navigation ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: flex-start;
-}
-
-.main-navigation .nav-link {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 36px;
-  font-weight: 400;
-  color: #111;
-  text-decoration: none;
-  letter-spacing: normal;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: block;
-  line-height: 1.2;
-}
-
-.main-navigation .nav-link:hover {
-  color: #333;
-  transform: translateX(4px);
-}
-
-.music-container {
-  flex: 1 1 auto;
-  max-width: 500px;
-  padding: 10px;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  z-index: 3; /* Mantiene il testo sopra lo sfondo colorato */
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 28px;
+  font-weight: bold; /* Testo in grassetto per visibilità */
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: lowercase;
+  transition: color 0.6s ease;
 }
