@@ -1,170 +1,187 @@
-body {
+/* --- RESET E STILI BASE --- */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background-color: #ffffff;
+  color: #111111;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- HEADER (Navigazione Superiore) --- */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 40px;
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: white;
+  font-size: 11px;
+  color: #999;
+  letter-spacing: 2px;
+}
+
+.top-nav {
+  display: flex;
+  gap: 40px;
+}
+
+.top-nav a {
+  color: #999;
+  text-decoration: none;
+  transition: color 0.4s ease;
+  text-transform: lowercase;
+}
+
+.top-nav a:hover {
+  color: #111;
+}
+
+/* --- SEZIONE CENTRALE (Titolo e Player) --- */
+.center-section {
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  position: relative;
   text-align: center;
-  color: black;
 }
 
-/* Header */
-.top-nav { padding: 40px 20px; }
-.header-links { display: flex; justify-content: space-between; max-width: 800px; margin: 0 auto 20px; font-family: serif; }
-.header-links a { text-decoration: none; color: black; font-style: italic; }
-
-.main-title { font-family: serif; font-size: 80px; margin: 0; letter-spacing: 5px; text-transform: uppercase; }
-.subtitle { font-family: serif; font-size: 20px; margin-top: -10px; font-style: italic; }
-
-/* Player */
-.player-container { max-width: 700px; margin: 40px auto; padding: 0 20px; }
-
-/* Date Sparse */
-.dates-cloud { position: relative; height: 200px; max-width: 900px; margin: 0 auto; overflow: hidden; color: #888; font-size: 14px; }
-.dates-cloud span { position: absolute; }
-
-/* Gallery */
-.bottom-gallery { display: flex; justify-content: center; gap: 15px; padding: 40px; }
-.gallery-item { position: relative; width: 200px; height: 150px; overflow: hidden; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; text-decoration: none; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s ease; }
-.gallery-item .label { position: absolute; z-index: 2; color: black; font-weight: bold; font-size: 20px; transition: color 0.4s; }
-
-/* Effetto Liquido Hover */
-.fluid-link::before {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
+.main-title {
+  font-size: clamp(50px, 8vw, 110px); /* Si adatta allo schermo */
+  letter-spacing: 18px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-weight: 400;
+  z-index: 10;
+  position: relative;
 }
 
-.fluid-link:hover::before { left: 0; }
-.fluid-link:hover img { opacity: 0.3; }
-.fluid-link:hover .label { color: white; }
+.subtitle {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: #777;
+  text-transform: lowercase;
+  z-index: 10;
+  margin-bottom: 50px;
+  position: relative;
+}
 
+.player-wrapper {
+  width: 100%;
+  max-width: 550px;
+  z-index: 10;
+  background: #fff;
+  padding: 8px;
+  border: 1px solid #f0f0f0;
+  position: relative;
+}
 
-/* Il contenitore deve coprire l'area ma stare dietro a tutto */
+.player-wrapper iframe {
+  border: 0;
+  width: 100%;
+  height: 42px;
+}
+
+/* --- NUVOLA DI DATE (Sfondo Animato) --- */
 .dates-cloud {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Così puoi cliccare i tasti sotto le date */
+  pointer-events: none;
   z-index: 1;
-  overflow: hidden;
 }
 
-/* Stile delle singole date */
 .date-item {
   position: absolute;
   font-family: 'Courier New', monospace;
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.15); /* Colore molto leggero */
+  color: rgba(0, 0, 0, 0.08); /* Molto leggero e soave */
   white-space: nowrap;
-  animation: float 20s infinite ease-in-out;
+  animation: float 22s infinite ease-in-out;
 }
 
-/* L'effetto di movimento */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-25px) translateX(10px); }
 }
-/* Configurazione della griglia per affiancare i 4 box */
+
+/* --- GALLERY GRID (I 4 Box) --- */
 .boxes-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Crea 4 colonne uguali */
+  grid-template-columns: repeat(4, 1fr);
   width: 100%;
-  margin-top: 60px;
+  background-color: #ffffff;
 }
 
-/* Stile base del singolo box-link */
-.box-item {
+.gallery-item {
   position: relative;
-  height: 300px;
+  height: 380px;
   overflow: hidden;
-  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-size: cover;
-  background-position: center;
+  background-color: #ffffff; /* Sfondo bianco per la sfumatura hover */
+  text-decoration: none;
 }
 
-/* Assegnazione delle immagini di sfondo caricate nella cartella images */
-.box-item.music { background-image: url('images/sfondo_music.jpg'); }
-.box-item.works { background-image: url('images/sfondo_works.jpg'); }
-.box-item.live { background-image: url('images/sfondo_live.jpg'); }
-.box-item.contacts { background-image: url('images/sfondo_contacts.jpg'); }
-
-/* Creazione dell'effetto overlay "liquido" (lo sfondo che scorre) */
-.box-item::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%; /* Inizia fuori dallo schermo a sinistra */
-  width: 100%;
-  height: 100%;
-  transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Movimento fluido */
-  z-index: 2;
-}
-
-/* Colori dell'overlay al passaggio del mouse per ogni sezione */
-.box-item.music::after { background: rgba(52, 152, 219, 0.9); }
-.box-item.works::after { background: rgba(231, 76, 60, 0.9); }
-.box-item.live::after { background: rgba(243, 156, 18, 0.9); }
-.box-item.contacts::after { background: rgba(39, 174, 96, 0.9); }
-
-/* Attivazione dell'effetto: lo sfondo scorre verso destra al passaggio del mouse */
-.box-item:hover::after {
-  left: 0;
-}
-
-/* Stile del testo (etichetta) sopra l'immagine */
-.box-item span {
-  position: relative;
-  z-index: 3; /* Mantiene il testo sopra lo sfondo colorato */
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 28px;
-  font-weight: bold; /* Testo in grassetto per visibilità */
-  color: #fff;
-  letter-spacing: 2px;
-  text-transform: lowercase;
-  transition: color 0.6s ease;
-}
-/* --- EFFETTO HOVER ANIMATO GALLERY --- */
-
-/* Assicuriamoci che il contenitore permetta al testo di stare sopra */
-.gallery-item {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  background-color: #000; /* Sfondo nero per far risaltare l'immagine quando diventa trasparente */
-}
-
-/* Transizione morbida sull'immagine */
+/* --- IMMAGINI E ANIMAZIONE HOVER SOAVE --- */
 .gallery-item img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  transition: opacity 0.3s ease; /* La transizione che hai chiesto */
+  filter: grayscale(20%); /* Leggermente desaturate di base */
+  transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), 
+              transform 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* Quando passi il mouse, l'immagine diventa opaca al 30% */
 .gallery-item:hover img {
-  opacity: 0.3;
+  opacity: 0.15; /* Sfuma quasi completamente verso il bianco del fondo */
+  transform: scale(1.03); /* Leggerissimo zoom soave */
 }
 
-/* Il testo (la label) rimane sopra e NON cambia opacità */
+/* --- ETICHETTE TESTO --- */
 .image-label {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Centra perfettamente il testo */
   z-index: 10;
-  color: white;
-  font-weight: bold;
-  font-size: 24px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  pointer-events: none; /* Importante: il mouse "passa attraverso" il testo e attiva l'hover sull'immagine */
+  color: #ffffff; /* Bianco per Music e Live */
+  pointer-events: none;
+  transition: letter-spacing 0.8s ease;
+}
+
+.gallery-item:hover .image-label {
+  letter-spacing: 5px; /* Si espande leggermente al passaggio */
+}
+
+/* Richiesta specifica: Testo nero per Works e Contacts */
+.text-black {
+  color: #111111 !important;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .main-title { font-size: 70px; letter-spacing: 10px; }
+  .boxes-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item { height: 300px; }
+}
+
+@media (max-width: 768px) {
+  .boxes-grid { grid-template-columns: 1fr; }
+  .top-header { padding: 20px; flex-direction: column; gap: 15px; }
+  .top-nav { gap: 20px; }
 }
